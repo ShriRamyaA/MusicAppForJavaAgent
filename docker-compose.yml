@@ -1,0 +1,32 @@
+version: "2.1"
+
+  mongo: 
+   container_name: mongo_docker
+   hostname: localhost
+   image: mongo:3.4-jessie
+   network_mode: host
+   ports: 
+    - 27017:27017
+   restart: always
+   volumes: 
+    - ./data/db:/data/db
+   healthcheck:
+    test: "exit 0"
+
+  music-service:
+   build: MusicApp_springBoot/
+   container_name: musicappservice_docker
+   depends_on: 
+    mongo:
+     condition: service_healthy
+   image: musicappservice:latest
+   network_mode: host
+   ports: 
+    - 8098:8098
+   restart: always
+   healthcheck:
+    test: "exit 0"
+
+volumes:
+  data: ~
+
