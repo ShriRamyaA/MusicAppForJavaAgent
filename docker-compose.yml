@@ -7,7 +7,7 @@ services:
    image: mongo:3.4-jessie
    network_mode: host
    ports: 
-    - 27018:27018
+    - 27018:27017
    restart: always
    volumes: 
     - ./data/db:/data/db
