@@ -9,8 +9,6 @@ services:
    ports: 
     - 27018:27017
    restart: always
-   volumes: 
-    - ./data/db:/data/db
    healthcheck:
     test: "exit 0"
 
